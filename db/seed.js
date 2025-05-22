@@ -1,10 +1,17 @@
-import db from "#db/client";
+import client from "./client.js";
+import { createEmployee } from "./queries/employees.js"
 
-await db.connect();
+await client.connect();
 await seedEmployees();
-await db.end();
+await client.end();
 console.log("🌱 Database seeded.");
 
 async function seedEmployees() {
-  // TODO
+  await client.connect()
+
+  await createEmployee("Ashley Pyka", "1990-07-31", 1000000)
+
+  await client.end()
 }
+
+seedDB()
